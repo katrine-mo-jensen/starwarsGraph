@@ -3,7 +3,7 @@ import { getPersons } from "../query/GetPersons";
 import { request } from "graphql-request";
 
 export const Main = () => {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["getStarwarsPerson"],
     queryFn: async () =>
       request(
@@ -16,7 +16,7 @@ export const Main = () => {
     return <span>Loading...</span>
   }
 
-  if (isError) {
+  if (error) {
     return <span>Error: {error.message}</span>
   }
 
@@ -27,8 +27,8 @@ export const Main = () => {
       <h1>Hello Magpie</h1>
       <section>
       <ul>
-      {data?.map((data) => (
-        <li key={data.id}>{data.title}</li>
+      {data.allPeople.people.map((item, index) => (
+        <li key={index}>{item.name}</li>
       ))}
     </ul>
       </section>

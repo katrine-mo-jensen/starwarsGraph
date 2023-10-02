@@ -1,4 +1,4 @@
-export const getPersons = `
+export const getCharacter = `
 query AllPeople {
     allPeople {
       people {

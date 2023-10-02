@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPersons } from "../query/GetPersons";
+import { getCharacter } from "../query/GetCharacters";
 import { request } from "graphql-request";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const Main = () => {
     queryFn: async () =>
       request(
         "https://swapi-graphql.netlify.app/.netlify/functions/index",
-        getPersons
+        getCharacter
       ),
   });
 
@@ -21,7 +21,7 @@ export const Main = () => {
     return <span>Error: {error.message}</span>;
   }
 
-  console.log("Data", data);
+  // console.log("Data", data);
   return (
     <>
       <section>

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPersons } from "../query/GetPersons";
 import { request } from "graphql-request";
+import { Link } from "react-router-dom";
 
 export const Main = () => {
   const { data, isLoading, error } = useQuery({
@@ -13,24 +14,24 @@ export const Main = () => {
   });
 
   if (isLoading) {
-    return <span>Loading...</span>
+    return <span>Loading...</span>;
   }
 
   if (error) {
-    return <span>Error: {error.message}</span>
+    return <span>Error: {error.message}</span>;
   }
-
 
   console.log("Data", data);
   return (
     <>
-      <h1>Hello Magpie</h1>
       <section>
-      <ul>
-      {data.allPeople.people.map((item, index) => (
-        <li key={index}>{item.name}</li>
-      ))}
-    </ul>
+        <ul>
+          {data.allPeople.people.map((item, index) => (
+            <Link to={`/character/${item.id}`} key={index}>
+              {item.name}
+            </Link>
+          ))}
+        </ul>
       </section>
     </>
   );

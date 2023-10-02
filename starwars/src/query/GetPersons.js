@@ -3,16 +3,7 @@ query AllPeople {
     allPeople {
       people {
         name
-        homeworld {
-          name
-          gravity
-        }
-        birthYear
-        filmConnection {
-          films {
-            title
-          }
-        }
+        id
       }
     }
   }
